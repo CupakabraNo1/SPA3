@@ -42,7 +42,7 @@ public class DirectionalGraph {
 
             neighbours = new ArrayList<>(v);
             components = new ArrayList<>();
-            
+
             inDegrees = new ArrayList<>(v);
             outDegrees = new ArrayList<>(v);
             for (int i = 0; i < v; i++) {
@@ -130,25 +130,26 @@ public class DirectionalGraph {
     }
 
     public void cycle() {
-        boolean [] marked = new boolean [v];
-        boolean [] onStack = new boolean [v];
-        int [] edgeTo = new int[v];
+        boolean[] marked = new boolean[v];
+        boolean[] onStack = new boolean[v];
+        int[] edgeTo = new int[v];
         Stack<Integer> cycle = null;
         for (int i = 0; i < v; i++) {
-            if(!marked[i] && cycle == null)
-                dfsC(i,marked, onStack, edgeTo, cycle);
+            if (!marked[i] && cycle == null)
+                dfsC(i, marked, onStack, edgeTo, cycle);
         }
     }
 
-    private void dfsC(int index, boolean[] marked, boolean[] onStack, int[] edgeTo, Stack<Integer> cycle){
+    private void dfsC(int index, boolean[] marked, boolean[] onStack, int[] edgeTo, Stack<Integer> cycle) {
         onStack[index] = true;
         marked[index] = true;
         for (int i : neighbours.get(index)) {
-            if(cycle != null) return;
-            if(!marked[i]){
+            if (cycle != null)
+                return;
+            if (!marked[i]) {
                 edgeTo[i] = index;
-                dfsC(i, marked,onStack, edgeTo, cycle);
-            } else if ( onStack[i]) {
+                dfsC(i, marked, onStack, edgeTo, cycle);
+            } else if (onStack[i]) {
                 cycle = new Stack<>();
                 for (int j = index; j != i; j = edgeTo[j]) {
                     cycle.push(j);
@@ -164,7 +165,7 @@ public class DirectionalGraph {
         Set<Integer> sources = new HashSet<>();
 
         for (int i = 0; i < v; i++) {
-            if(getInDegree(i) == 0 && getOutDegree(i) > 0){
+            if (getInDegree(i) == 0 && getOutDegree(i) > 0) {
                 sources.add(i);
             }
         }
@@ -184,11 +185,83 @@ public class DirectionalGraph {
 
     }
 
-    public boolean canBeAccessedFromAll(){
+    public boolean canBeAccessedFromAll() {
         for (int i = 0; i < v; i++) {
             return !(getInDegree(i) == 0);
         }
         return true;
+    }
+
+    public boolean canAccessAllOthers(int i) {
+        boolean result = false;
+        List<Integer> visited = new ArrayList<>();
+        dfsA(i, visited);
+        if (visited.size() == v)
+            result = true;
+
+        return result;
+
+    }
+
+    private void dfsA(int index, List<Integer> visited) {
+        if (visited.contains(index))
+            return;
+        visited.add(index);
+        for (Integer i : neighbours.get(index)) {
+            dfsA(i, visited);
+        }
+    }
+
+    public DirectionalGraph transitveClousure() {
+        DirectionalGraph newGraph = new DirectionalGraph(v);
+        List<Integer> visited = new ArrayList<>();
+        for (int i = 0; i < v; i++) {
+            dfsT(i, visited);
+            newGraph.neighbours.get(i).addAll(visited);
+            visited = new ArrayList<>();
+        }
+        return newGraph;
+    }
+
+    private void dfsT(int index, List<Integer> visited) {
+        if (visited.contains(index)) {
+            return;
+        }
+
+        visited.add(index);
+        for (Integer i : neighbours.get(index)) {
+            dfsT(i, visited);
+        }
+    }
+
+    public Integer findOneAccessingAll() {
+        DirectionalGraph transitive = transitveClousure();
+        for (int i = 0; i < v; i++) {
+            if (transitive.neighbours.get(i).size() == v) {
+                return i;
+            }
+        }
+        return null;
+
+    }
+
+    public Integer findOneAccessedByAll() {
+        Set<Integer> vertices = new HashSet<>();
+        DirectionalGraph transitive = transitveClousure();
+        for (int i = 0; i < v; i++) {
+            final int position = i;
+            if (vertices.isEmpty()) {
+                vertices.addAll(transitive.neighbours.get(i));
+            } else {
+                vertices.removeIf((Integer x) -> !transitive.neighbours.get(position).contains(x));
+            }
+        }
+
+        for (Integer i : vertices) {
+            return i;
+        }
+        return null;
+
     }
 
     public List<Set<Integer>> getComponents() {
@@ -219,9 +292,9 @@ public class DirectionalGraph {
         return outDegrees.get(x);
     }
 
-    public void printDegrees(){
+    public void printDegrees() {
         for (int i = 0; i < v; i++) {
-            System.out.printf("V %d -> <%d, %d>\n", i, getInDegree(i), getOutDegree(i));            
+            System.out.printf("V %d -> <%d, %d>\n", i, getInDegree(i), getOutDegree(i));
         }
     }
 

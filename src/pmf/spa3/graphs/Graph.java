@@ -249,6 +249,23 @@ public class Graph {
         }
     }
 
+    public Graph createThree(){
+        Graph res = new Graph(v);
+        List<Integer> visited = new ArrayList<>();
+        dfsT(0, visited, res);
+        if(visited.size() == v) return res;
+        else return null;
+    }
+
+    private void dfsT(int index, List<Integer> visited, Graph res){
+        if(visited.contains(index)) return;
+        visited.add(index);
+        for(int i: neighbours.get(index)){
+            res.addEdge(index, i);
+            dfsT(i, visited, res);
+        }
+    }
+
     public void setBipartitiv(boolean bipartitiv) {
         this.bipartitiv = bipartitiv;
     }

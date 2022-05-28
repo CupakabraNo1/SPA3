@@ -8,24 +8,24 @@
 
 - <u>da li moze da se stigne do svih cvorova iz bar jos nekog cvora u grafu?</u>
 
-- za dati cvor, odrediti da li se moze stici do svih ostalih cvorova
+- <u>za dati cvor, odrediti da li se moze stici do svih ostalih cvorova</u>
 
 - za dati cvor, odrediti da li se moze stici nazad do njega
 
-- naci tranzitivno zatvorenje na usmerenom grafu. vratiti novi graf koji predstavlja to zatvorenje.
+- <u>naci tranzitivno zatvorenje na usmerenom grafu. vratiti novi graf koji predstavlja to zatvorenje.</u>
 
-- naci da li postoji cvor iz koga se moze stici do svih cvorova
+- <u>naci da li postoji cvor iz koga se moze stici do svih cvorova</u> 
 
-- naci da li postoji cvor do koga se moze stici iz svih cvorova
+- <u>naci da li postoji cvor do koga se moze stici iz svih cvorova</u>
 
 ## korak nazad, neusmereni graf
 
-- Za dati neusmereni graf. naci pokrivajuce stablo i vratiti nov nezavistan graf kao rezultat. vratiti gresku ako graf nije povezan. Pošto je u pitanju neusmeren graf, ne postoji koncept "minimalnog" pokrivajućeg stabla,
+- <u>Za dati neusmereni graf. naci pokrivajuce stablo i vratiti nov nezavistan graf kao rezultat. vratiti gresku ako graf nije povezan. Pošto je u  pitanju neusmeren graf, ne postoji koncept "minimalnog" pokrivajućeg stabla,</u>
 
 ## korak napred - tezinski grafovi 
 
 - za ove zadatke je svejedno da li su grafovi usmereni, recimo za pocetak da nisu
 
-    - za dati graf naci cvor sa najtezim granama oko sebe
+    - <u>za dati graf naci cvor sa najtezim granama oko sebe</u>
 
-    - i cvor sa najlaksim granama oko sebe
+    - <u>i cvor sa najlaksim granama oko sebe</u>

@@ -6,14 +6,16 @@ import java.util.Set;
 
 import pmf.spa3.graphs.DirectionalGraph;
 import pmf.spa3.graphs.Graph;
+import pmf.spa3.graphs.WeightedGraph;
+import pmf.spa3.graphs.utils.WeightedEdge;
 
 public class Main {
 
     public static void main(String[] args) {
-        initDirectionalGraph();
+        initWeightedGraph();
     }
 
-    public static void initGraph(){
+    public static void initGraph() {
         Graph graph1 = new Graph("src/pmf/spa3/assets/tinyG.txt");
         graph1.printGraph();
         Set<Integer> result = graph1.component(0);
@@ -58,5 +60,22 @@ public class Main {
             System.out.print("(" + i + ") ");
         }
         System.out.print("\n");
+
+        System.out.printf("From 0 every vertex %s be reached.\n", graph2.canAccessAllOthers(0) ? "can": "can't");
+    }
+
+    public static void initWeightedGraph(){
+        WeightedGraph graph3 = new WeightedGraph(5);
+        graph3.addEdge(0, 1, 5);
+        graph3.addEdge(0, 2, 6);
+        graph3.addEdge(0, 3, 2);
+        graph3.addEdge(3, 4,8);
+        graph3.addEdge(4, 2, 1);
+        graph3.addEdge(2, 1, 5);
+
+
+        System.out.printf("Heaviest neigbours have edge %d\n", graph3.heaviestNeighbour());
+        System.out.printf("Lightest neigbours have edge %d\n", graph3.lightestNeigbours());
+
     }
 }
