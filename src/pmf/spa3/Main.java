@@ -7,7 +7,6 @@ import java.util.Set;
 import pmf.spa3.graphs.DirectionalGraph;
 import pmf.spa3.graphs.Graph;
 import pmf.spa3.graphs.WeightedGraph;
-import pmf.spa3.graphs.utils.WeightedEdge;
 
 public class Main {
 
@@ -77,5 +76,8 @@ public class Main {
         System.out.printf("Heaviest neigbours have edge %d\n", graph3.heaviestNeighbour());
         System.out.printf("Lightest neigbours have edge %d\n", graph3.lightestNeigbours());
 
+        List<Integer> path = graph3.lightestPathBetween(0, 4);
+        System.out.println("Path between 0 and 4 is:");
+        path.forEach(x -> System.out.print("( "+x+" ) "));
     }
 }

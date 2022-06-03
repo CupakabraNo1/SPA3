@@ -71,4 +71,32 @@ public class WeightedGraph {
         return position;
     }
 
+    public List<Integer> lightestPathBetween(int start, int end) {
+        // 1)
+        //  *dokle god imamo neke popravke tezina
+        //      *za svaku granu
+        //          *proveriti da li je kraci put preko nje do cvorova kojima pripada
+        //          *osveziti duzine ako treba
+        //          *postaviti da smo osvezili nesto
+
+
+        // 2)
+        //  *neka vrst Dijkstre
+        return null;
+    }
+    
+    public boolean pathBetween(int a, int b, int n){
+        // ili modifikovati graf da nema te grane ili modifikovati algoritam da ih
+        // ne posmatra
+        return true;
+    }
+
+    public boolean pathBetweenEven(int a, int b, int n) {
+        // ili modifikovati graf da spaja grane uz sabiranje tezina (par -(5)-> nepar -(2)-> par = par -(7)-> par)
+        // ili modifikovati algoritam da pamti koliko je daha upotrebljeno pri prelasku na neparni cvo
+        return true;
+    }
+
+    
+
 }
