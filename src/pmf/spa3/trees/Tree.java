@@ -3,7 +3,6 @@ package pmf.spa3.trees;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 import pmf.spa3.trees.utils.Node;
 
 public class Tree<K extends Comparable<K>, V> {
@@ -104,13 +103,35 @@ public class Tree<K extends Comparable<K>, V> {
 
     public List<K> keysInRange(K a, K b) {
         List<K> list = new ArrayList<K>();
+        keysInRange(a, b, root, list);
 
         return list;
     }
 
-    public int height() {
+    private void keysInRange(K a, K b, Node<K, V> current, List<K> list) {
+        if (current == null)
+            return;
+        if (comparator.compare(a, current.getKey()) <= 0 && comparator.compare(b, current.getKey()) >= 0) {
+            list.add(current.getKey());
+        }
+        keysInRange(a, b, current.getLeft(), list);
+        keysInRange(a, b, current.getRight(), list);
+    }
 
-        return 0;
+    public int height() {
+        int height = 0;
+        height += height(root);
+        return height;
+    }
+
+    private int height(Node<K, V> current) {
+        if (current == null)
+            return 0;
+        else {
+            int left = height(current.getLeft());
+            int right = height(current.getRight());
+            return left > right ? left + 1 : right + 1;
+        }
     }
 
     public void printSideways() {
@@ -129,6 +150,10 @@ public class Tree<K extends Comparable<K>, V> {
         }
         System.out.println("( " + current.getKey() + " | " + current.getValue() + " ) <");
         printSideways(current.getLeft(), level + 1);
+    }
+
+    public void balanceIfNeeded() {
+
     }
 
 }

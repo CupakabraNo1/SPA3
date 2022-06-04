@@ -26,8 +26,8 @@ koji vraca da li kljuc postoji u mapi.
  - <u>public V get(K key)</u> -
 koji vraca vrednost za dati kljuc. Ako kljuc ne postoji u mapi vratiti null. Ovim je automatski nemoguce razlikovati da li u mapi postoji kljuc sa null vrednoscu vezanom za sebe ili ne postoji kljuc u mapi.
 
- - public K minKey()
- - public K maxKey() -
+ - <u>public K minKey()</u>
+ - <u>public K maxKey()</u> -
 koji vracaju vrednosti najmanjeg, odnosno najveceg kljuca u mapi. Napisati ova dva metoda bez koriscenja rekurzije.
 
  - public List<K> keysInRange(K a, K b) -

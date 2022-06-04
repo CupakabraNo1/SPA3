@@ -46,14 +46,14 @@ public class Main {
         System.out.println("Graph " + (graph1.isBipartitiv() ? "is" : "is not") + " bipartitiv");
     }
 
-    public static void initDirectionalGraph(){
+    public static void initDirectionalGraph() {
         DirectionalGraph graph2 = new DirectionalGraph("src/pmf/spa3/assets/tinyG.txt");
         System.out.printf("Number of components is %d \n", graph2.getNumberOfComponents());
-        
+
         graph2.printDegrees();
         System.out.print("sources are: ");
         for (Integer i : graph2.findSources()) {
-            System.out.print("(" + i +") ");
+            System.out.print("(" + i + ") ");
         }
         System.out.print("\n");
 
@@ -63,10 +63,10 @@ public class Main {
         }
         System.out.print("\n");
 
-        System.out.printf("From 0 every vertex %s be reached.\n", graph2.canAccessAllOthers(0) ? "can": "can't");
+        System.out.printf("From 0 every vertex %s be reached.\n", graph2.canAccessAllOthers(0) ? "can" : "can't");
     }
 
-    public static void initWeightedGraph(){
+    public static void initWeightedGraph() {
         WeightedGraph graph3 = new WeightedGraph(5);
         graph3.addEdge(0, 1, 1);
         graph3.addEdge(0, 2, 5);
@@ -75,19 +75,18 @@ public class Main {
         graph3.addEdge(1, 4, 8);
         graph3.addEdge(2, 4, 1);
 
-
         System.out.printf("Heaviest neigbours have edge %d\n", graph3.heaviestNeighbour());
         System.out.printf("Lightest neigbours have edge %d\n", graph3.lightestNeigbours());
 
         List<Integer> path = graph3.lightestPathBetween(0, 4);
         System.out.println("Path between 0 and 3 is:");
-        path.forEach(x -> System.out.print("( "+x+" ) "));
-
+        path.forEach(x -> System.out.print("( " + x + " ) "));
 
     }
 
-    public static void initBinaryTree(){
-        Tree<Integer, Integer> tree = new Tree<>(Comparator.nullsFirst(new ComparatorWithoutNull()));
+    public static void initBinaryTree() {
+        Comparator<Integer> comp = Comparator.nullsFirst(new ComparatorWithoutNull());
+        Tree<Integer, Integer> tree = new Tree<>(comp);
         tree.put(5, 5);
         tree.put(3, 3);
         tree.put(2, 2);
@@ -97,7 +96,11 @@ public class Main {
 
         tree.printSideways();
 
-        System.out.println(tree.containsKey(7) ? "Key 7 exists": "Key 7 dont exist");
+        System.out.printf("Height of tree is %d\n", tree.height());
+
+        System.out.println(tree.containsKey(7) ? "Key 7 exists" : "Key 7 dont exist");
+        System.out.println("Keys between 3 and 5 are: ");
+        tree.keysInRange(3, 5).forEach((Integer x) -> System.out.print("( " + x + " ) "));
         System.out.printf("Value of node with key 7 is %d\n", tree.get(7));
         System.out.printf("Max key is %d\n", tree.maxKey());
         System.out.printf("Min key is %d\n", tree.minKey());
