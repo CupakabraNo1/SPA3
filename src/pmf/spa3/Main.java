@@ -9,12 +9,13 @@ import pmf.spa3.graphs.DirectionalGraph;
 import pmf.spa3.graphs.Graph;
 import pmf.spa3.graphs.WeightedGraph;
 import pmf.spa3.trees.Tree;
+import pmf.spa3.trees.Trie;
 import pmf.spa3.trees.utils.ComparatorWithoutNull;
 
 public class Main {
 
     public static void main(String[] args) {
-        initBinaryTree();
+        initTrie();
     }
 
     public static void initGraph() {
@@ -104,5 +105,26 @@ public class Main {
         System.out.printf("Value of node with key 7 is %d\n", tree.get(7));
         System.out.printf("Max key is %d\n", tree.maxKey());
         System.out.printf("Min key is %d\n", tree.minKey());
+    }
+
+    public static void initTrie() {
+        Trie trie = new Trie();
+        trie.put("pas");
+        trie.put("par");
+        trie.put("pera");
+        trie.put("usta");
+        trie.put("pasa");
+        // trie.put("pera");
+
+
+        trie.remove("pas");
+
+        List<String> list = trie.startsWith("pas");
+        if(list.isEmpty()) System.out.println("empty list");
+        else list.forEach(x-> System.out.println(x));
+
+        System.out.println("Most popular: ");
+        trie.mostPopular().forEach(x-> System.out.print("( "+x+" ) "));
+     
     }
 }

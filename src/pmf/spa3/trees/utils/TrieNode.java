@@ -33,5 +33,8 @@ public class TrieNode {
     public void increment(){
         this.counter++;
     }
+    public void decrement(){
+        this.counter--;
+    }
 
 }

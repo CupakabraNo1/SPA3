@@ -9,19 +9,19 @@
 
     - <u>dodavanje stringa u skup</u>
 
-    - za ispitivanje koliko puta je neki string dodat, koji vraca 0 ako dosad taj string nije vidjen
+    - <u>za ispitivanje koliko puta je neki string dodat, koji vraca 0 ako dosad taj string nije vidjen</u>
 
     - <u>ispis svih stringova dosada vidjenih i njihov broj</u>
 
-    - vracanje liste sa svim stringovima koji su ubacivani u skup
+    - <u>vracanje liste sa svim stringovima koji su ubacivani u skup</u>
 
-    - vracanje skupa reci koje su ubacivane
+    - <u>vracanje skupa reci koje su ubacivane</u>
 
-    - vracanje liste najcescih reci. Ako ima vise sa istim brojem pojava, treba sve vratiti, ako ima samo jedna koja se najvise pojavljuje vratiti listu sa samo njom. Razmotriti prosirenja klase koja vode do optimizacije ovog metoda ako je cesto potreban.
+    - <u>vracanje liste najcescih reci. Ako ima vise sa istim brojem pojava, treba sve vratiti, ako ima samo jedna koja se najvise pojavljuje vratiti listu sa samo njom. Razmotriti prosirenja klase koja vode do optimizacije ovog metoda ako je cesto potreban</u>.
 
-    - vracanje liste reci koje pocinju datim prefiksom
+    - <u>vracanje liste reci koje pocinju datim prefiksom</u>
 
-    - brisanje neke reci iz skupa. ovo se moze razmatrati odvojeno od optimizacije za najcesce reci.
+    - <u>brisanje neke reci iz skupa. ovo se moze razmatrati odvojeno od optimizacije za najcesce reci</u>.
 
 ## U vezi implementacije
 Korisititi n-arna stabla, u duhu strukture Trie.
