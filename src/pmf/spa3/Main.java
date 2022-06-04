@@ -1,5 +1,6 @@
 package pmf.spa3;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -7,11 +8,13 @@ import java.util.Set;
 import pmf.spa3.graphs.DirectionalGraph;
 import pmf.spa3.graphs.Graph;
 import pmf.spa3.graphs.WeightedGraph;
+import pmf.spa3.trees.Tree;
+import pmf.spa3.trees.utils.ComparatorWithoutNull;
 
 public class Main {
 
     public static void main(String[] args) {
-        initWeightedGraph();
+        initBinaryTree();
     }
 
     public static void initGraph() {
@@ -81,5 +84,22 @@ public class Main {
         path.forEach(x -> System.out.print("( "+x+" ) "));
 
 
+    }
+
+    public static void initBinaryTree(){
+        Tree<Integer, Integer> tree = new Tree<>(Comparator.nullsFirst(new ComparatorWithoutNull()));
+        tree.put(5, 5);
+        tree.put(3, 3);
+        tree.put(2, 2);
+        tree.put(4, 4);
+        tree.put(1, 1);
+        tree.put(6, 6);
+
+        tree.printSideways();
+
+        System.out.println(tree.containsKey(7) ? "Key 7 exists": "Key 7 dont exist");
+        System.out.printf("Value of node with key 7 is %d\n", tree.get(7));
+        System.out.printf("Max key is %d\n", tree.maxKey());
+        System.out.printf("Min key is %d\n", tree.minKey());
     }
 }
