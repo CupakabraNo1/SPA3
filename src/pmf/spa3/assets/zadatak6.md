@@ -1,40 +1,31 @@
+# Stabla - zadatak 2
+## Zadatak 2 - n-arna stabla
 
-# Zadatak 1 - stabla i pretrazivanja
+- Napraviti brojeci skup - tj skup koji pamti koliko puta je nesto dodato u njega. Uzeti da se u skup dodaju samo stringovi.
 
-- <u>Napraviti sortiranu mapu u kojoj se podaci interno cuvaju u binarnom stablu pretrazivanja. Tipovi za kljuceve i vrednosti treba da su opsti tipovi, nesto oblika <K extends Comparable<K>, V>, da bi imali uporedivost kljuceva.</u>
+- Napraviti glavni program (moze main u okviru skupa) koji iz nekog fajla ucitava stringove, smesta ih u skup i ispisuje broj pojava.
 
-- <u>Korisiti komparator za sve interne operacije poredjenja kljuceva. Ako nije prosledjen komparator u konstruktoru, koristiti Comparator.naturalOrder().</u>
+- U okviru skupa treba da postoje metodi:
 
-- <u>Postojanje null kljuceva je odredjeno ponasanjem komparatora, odnosno da li ce on baciti NullPointerException. Za testiranje rada sa takvim kljucevima se moze koristiti Comparator.nullsFirst(Comparator c) koji vraca novi komparator koji prima null, a inace koristi prosledjeni.</u>
+    - <u>dodavanje stringa u skup</u>
 
-- <u>Dozvoljeno je da postoje null vrednosti u mapi vezane za kljuceve.</u>
+    - <u>za ispitivanje koliko puta je neki string dodat, koji vraca 0 ako dosad taj string nije vidjen</u>
 
-### Dati fajlovi kola*.txt
+    - <u>ispis svih stringova dosada vidjenih i njihov broj</u>
 
-sadrze podatke o registarskim tablicama i poslednjoj osobi koja je vozila taj automobil. Podaci su razdvojeni sa ";" u istom redu.
+    - <u>vracanje liste sa svim stringovima koji su ubacivani u skup</u>
 
-kola1.txt je mali fajl, zgodan za inicijalna testiranja, kola[23]?.txt sadrze iste podatke, ali u raznim redosledima, sto utice na formiranje stabla.
+    - <u>vracanje skupa reci koje su ubacivane</u>
 
-## Metodi koje treba implementirati
+    - <u>vracanje liste najcescih reci. Ako ima vise sa istim brojem pojava, treba sve vratiti, ako ima samo jedna koja se najvise pojavljuje vratiti listu sa samo njom. Razmotriti prosirenja klase koja vode do optimizacije ovog metoda ako je cesto potreban</u>.
 
- - <u>public void put(K key, V value)</u>
-koji u mapu ubacuje vrednost value vezanu za kljuc key. Ako vec postoji vrednost za kljuc, zameniti je. Dozvoljene su null vrednosti.
+    - <u>vracanje liste reci koje pocinju datim prefiksom</u>
 
- - <u>public boolean containsKey(K key) </u>-
-koji vraca da li kljuc postoji u mapi.
+    - <u>brisanje neke reci iz skupa. ovo se moze razmatrati odvojeno od optimizacije za najcesce reci</u>.
 
- - <u>public V get(K key)</u> -
-koji vraca vrednost za dati kljuc. Ako kljuc ne postoji u mapi vratiti null. Ovim je automatski nemoguce razlikovati da li u mapi postoji kljuc sa null vrednoscu vezanom za sebe ili ne postoji kljuc u mapi.
+## U vezi implementacije
+Korisititi n-arna stabla, u duhu strukture Trie.
 
- - <u>public K minKey()</u>
- - <u>public K maxKey()</u> -
-koji vracaju vrednosti najmanjeg, odnosno najveceg kljuca u mapi. Napisati ova dva metoda bez koriscenja rekurzije.
+Npr moze se predpostaviti varijanta sa ASCII znacima i napraviti niz od 256 pokazivaca. Moze se uzeti i varijanta sa samo "redovnim" malim slovima i napraviti niz od 26 pokazivaca i usput konvertovati vrednosti da se mapiraju na ovo.
 
- - public List<K> keysInRange(K a, K b) -
-koji vraca listu kljuceva koji su u nekom opsegu, ukljucujuci i a i b.
-
- - public int height() -
-koji vraca visinu internog stabla - tj rastojanje do najdaljeg lista. Eksperimentisati sa kola[23]?.txt fajlovima koji imaju iste podatke u razlicitim redosledima.
-
- - public void balanceIfNeeded() -
-koja interno stablo rebalansirano da bude ravnomernije rasporedjeno, ali samo ako se visine levog i desnog podstabla iz korena razlikuju za vise od 3. Ne zahteva se velika efikasnost, dozvoljeno je zauzimanje znacajnog dodatnog prostora, npr za nekakav niz.
+Za zanimljivije implementacije koje mogu da uzmu proizvoljne ulaze, a da ne zauzimaju sulude kolicine memorije, moze se koristiti i nesto kao Map<Character, Cvor>.

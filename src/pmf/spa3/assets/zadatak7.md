@@ -1,31 +1,40 @@
-# Stabla - zadatak 2
-## Zadatak 2 - n-arna stabla
+# Dvostrani brzi skup
 
-- Napraviti brojeci skup - tj skup koji pamti koliko puta je nesto dodato u njega. Uzeti da se u skup dodaju samo stringovi.
+## Napraviti klasu Imenik.
 
-- Napraviti glavni program (moze main u okviru skupa) koji iz nekog fajla ucitava stringove, smesta ih u skup i ispisuje broj pojava.
+U njoj treba da su uparene vrednosti brojeva telefona i imena osoba. I jedno i drugo tretirati kao stringove.
 
-- U okviru skupa treba da postoje metodi:
+Ideja je da se jedan broj telefona moze pojaviti samo jednom, dok se istovremeno ne sme pojaviti ni isto ime vise puta.
 
-    - <u>dodavanje stringa u skup</u>
+Bitno je i da imena mogu da se izlistaju abecededno u svakom momentu.
 
-    - <u>za ispitivanje koliko puta je neki string dodat, koji vraca 0 ako dosad taj string nije vidjen</u>
+Brojevi telefona nam nisu bitni u kom su redosledu.
 
-    - <u>ispis svih stringova dosada vidjenih i njihov broj</u>
+Implementaciju bazirati na postojecim klasama za skladistenje podataka, a primarni cilj je da se implementiraju trazena ogranicenja. Sledeci cilj je da sve bude sto brze, mozemo "zrtvovati" memoriju radi brzine.
 
-    - <u>vracanje liste sa svim stringovima koji su ubacivani u skup</u>
+Neki od metoda koji se ocekuju:
 
-    - <u>vracanje skupa reci koje su ubacivane</u>
+- public String getTel(String osoba)
 
-    - <u>vracanje liste najcescih reci. Ako ima vise sa istim brojem pojava, treba sve vratiti, ako ima samo jedna koja se najvise pojavljuje vratiti listu sa samo njom. Razmotriti prosirenja klase koja vode do optimizacije ovog metoda ako je cesto potreban</u>.
+- public String getOsoba(String tel)
 
-    - <u>vracanje liste reci koje pocinju datim prefiksom</u>
+- public boolean put(String osoba, String tel)
 
-    - <u>brisanje neke reci iz skupa. ovo se moze razmatrati odvojeno od optimizacije za najcesce reci</u>.
+- public Set<String> getBrojevi()
 
-## U vezi implementacije
-Korisititi n-arna stabla, u duhu strukture Trie.
+- public List<String> getOsobe()
+// vracena lista treba da bude sortirana po osobama
 
-Npr moze se predpostaviti varijanta sa ASCII znacima i napraviti niz od 256 pokazivaca. Moze se uzeti i varijanta sa samo "redovnim" malim slovima i napraviti niz od 26 pokazivaca i usput konvertovati vrednosti da se mapiraju na ovo.
 
-Za zanimljivije implementacije koje mogu da uzmu proizvoljne ulaze, a da ne zauzimaju sulude kolicine memorije, moze se koristiti i nesto kao Map<Character, Cvor>.
+## Interaktivni meni
+Napraviti strukturu za interaktivni meni sa podmenijima. Stavke u meniju treba da imaju svoj opis, taster za aktivaciju, potencijalnu akciju i potencijalni podmeni. Racuna se da stavka koja nema svoj podmeni finalna, tj njen odabir ce pokrenuti neku akciju. Akcije i pokretanje nisu tema zadatka, nego ce se samo ispisati sam tekst akcije. Tasteri za aktivaciju moraju biti jedinstveni u okviru grupe stavki koje se odjednom prikazuju.
+
+Napraviti program koji formira neki meni, te ga prikazuje korisniku, tako da se vide sve stavke sa nivoima dubine.
+
+"Prirodna" organizacija menija je u binarnom stablu, jedino sto nisu u pitanju klasicno "levo" i "desno" dete, nego podmeni i sledeca stavka u istom meniju. Na primer krenuvsi od korena i prateci pokazivace na sledecu stavku trebalo bi da izlistamo sve stavke iz najviseg nivoa menija. Ako koren ima podmeni, to je pokazivac na prvu stavku iz podmenija, a prateci njegove "sledece" veze, izlistacemo sve stavke iz tog podmenija. Ovakvo stablo nije BST.
+
+Za potrebe jedinstvenosti slova u nekom meniju se moze u "roditelju" te liste pamtiti dosad ubacena slova.
+
+Za dodavanje stavki u kompletan meni bi trebalo da se zadaje kompletna putanja do stavke, na primer "Edit", "indent", "auto indent", ili da se koriste aktivaciona slova za putanju. Alternativa u opstem slucaju je da se uvedu "id"-ovi za menije, pa se stavka dodaje u podmeni sa nekim id-om.
+
+Napraviti i interaktivnu verziju. Korisniku dati da unese po slovo i da time bira menije i podmenije. Ako se unese '.' prebaciti se skroz na pocetak menija. Kad se odabere neka konacna akcija ispisati je i vratiti se na pocetak. Ako korisnik unese nesto sto ne postoji u trenutnom meniju ponovo ga ispisati.
