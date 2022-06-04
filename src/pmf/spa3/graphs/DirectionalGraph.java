@@ -186,7 +186,7 @@ public class DirectionalGraph {
     }
 
     public boolean canBeAccessedFromAll() {
-        for (int i = 0; i < v; i++) {
+        for (int i = 0; i < this.v;) {
             return !(getInDegree(i) == 0);
         }
         return true;

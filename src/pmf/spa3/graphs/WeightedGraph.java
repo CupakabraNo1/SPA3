@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import pmf.spa3.graphs.utils.SPW;
 import pmf.spa3.graphs.utils.WeightedEdge;
 
 public class WeightedGraph {
@@ -82,19 +83,34 @@ public class WeightedGraph {
 
         // 2)
         //  *neka vrst Dijkstre
-        return null;
+
+        SPW paths = new SPW(this, start);
+        return paths.shortestPathTo(end);
     }
     
     public boolean pathBetween(int a, int b, int n){
         // ili modifikovati graf da nema te grane ili modifikovati algoritam da ih
         // ne posmatra
-        return true;
+
+        WeightedGraph safeGraph = new WeightedGraph(v);
+        for (WeightedEdge weightedEdge : edges) {
+            if(weightedEdge.getWeight() <= n) {
+                safeGraph.addEdge(weightedEdge.getStart(), weightedEdge.getStop(), weightedEdge.getWeight());
+            }   
+        }
+
+        SPW paths = new SPW(safeGraph, a);
+        return !paths.shortestPathTo(b).isEmpty();
     }
 
     public boolean pathBetweenEven(int a, int b, int n) {
         // ili modifikovati graf da spaja grane uz sabiranje tezina (par -(5)-> nepar -(2)-> par = par -(7)-> par)
         // ili modifikovati algoritam da pamti koliko je daha upotrebljeno pri prelasku na neparni cvo
         return true;
+    }
+
+    public String toString(){
+        return "Weihted graph with "+v+" nodes and "+edges.size()+" edges";
     }
 
     

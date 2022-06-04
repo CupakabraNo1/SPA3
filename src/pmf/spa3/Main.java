@@ -65,19 +65,21 @@ public class Main {
 
     public static void initWeightedGraph(){
         WeightedGraph graph3 = new WeightedGraph(5);
-        graph3.addEdge(0, 1, 5);
-        graph3.addEdge(0, 2, 6);
-        graph3.addEdge(0, 3, 2);
-        graph3.addEdge(3, 4,8);
-        graph3.addEdge(4, 2, 1);
-        graph3.addEdge(2, 1, 5);
+        graph3.addEdge(0, 1, 1);
+        graph3.addEdge(0, 2, 5);
+        graph3.addEdge(1, 2, 10);
+        graph3.addEdge(2, 3, 1);
+        graph3.addEdge(1, 4, 8);
+        graph3.addEdge(2, 4, 1);
 
 
         System.out.printf("Heaviest neigbours have edge %d\n", graph3.heaviestNeighbour());
         System.out.printf("Lightest neigbours have edge %d\n", graph3.lightestNeigbours());
 
         List<Integer> path = graph3.lightestPathBetween(0, 4);
-        System.out.println("Path between 0 and 4 is:");
+        System.out.println("Path between 0 and 3 is:");
         path.forEach(x -> System.out.print("( "+x+" ) "));
+
+
     }
 }

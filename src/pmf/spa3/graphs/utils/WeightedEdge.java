@@ -6,7 +6,7 @@ public class WeightedEdge {
     private int stop;
     private int weight;
 
-    public WeightedEdge(int start, int stop, int weight){
+    public WeightedEdge(int start, int stop, int weight) {
         this.start = start;
         this.stop = stop;
         this.weight = weight;
@@ -36,20 +36,22 @@ public class WeightedEdge {
         this.weight = weight;
     }
 
-    public boolean contains(int element){
+    public boolean contains(int element) {
         return this.start == element || this.stop == element;
     }
 
     public Integer getOther(int element) {
-        if(this.start == element) {
+        if (this.start == element) {
             return stop;
-        }
-        else if(this.stop == element) {
+        } else if (this.stop == element) {
             return start;
-        }
-        else {
+        } else {
             return null;
         }
     }
+
+    public boolean isBetween(int a, int b) {
+        return (this.start == a && this.stop == b) || (this.start == b && this.stop == a);
+    }   
 
 }
